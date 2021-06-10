@@ -14,24 +14,24 @@ let cardsOuter = document.querySelectorAll(".card-outer");
 let cards = document.querySelectorAll(".card-inner");
 let backs = document.querySelectorAll(".back");
 
-let images = [
-  "6088f9a30da8f40018033e29.jpg",
-  "cant.jpeg",
-  "cat.jpg",
-  "keanu.jpg",
-  "leo.jpg",
-  "mj.jpg",
-  "pika.jpg",
-  "yellow.png",
-  "6088f9a30da8f40018033e29.jpg",
-  "cant.jpeg",
-  "cat.jpg",
-  "keanu.jpg",
-  "leo.jpg",
-  "mj.jpg",
-  "pika.jpg",
-  "yellow.png",
-];
+// let images = [
+//   "6088f9a30da8f40018033e29.jpg",
+//   "cant.jpeg",
+//   "cat.jpg",
+//   "keanu.jpg",
+//   "leo.jpg",
+//   "mj.jpg",
+//   "pika.jpg",
+//   "yellow.png",
+//   "6088f9a30da8f40018033e29.jpg",
+//   "cant.jpeg",
+//   "cat.jpg",
+//   "keanu.jpg",
+//   "leo.jpg",
+//   "mj.jpg",
+//   "pika.jpg",
+//   "yellow.png",
+// ];
 
 let rNumber = 0;
 
@@ -54,19 +54,38 @@ const randomNumber = () => {
 };
 
 const shuffle = (array) => {
-  let oldElement;
-  for (let i = array.length - 1; i > 0; i--) {
-    let rand = Math.floor(Math.random() * 16);
-    oldElement = array[i];
-    array[i] = array[rand];
-    array[rand] = oldElement;
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
   }
-  for (let i = 0; i < backs.length; i++) {
-    backs[i].setAttribute("src", images[i]);
-  }
+
+  return array;
 };
 
-shuffle(images);
+const makeBoard = (nodeList) => {
+  let newArray = [];
+  nodeList.forEach((card) => {
+    newArray.push(card);
+  });
+  let shuffleArray = shuffle(newArray);
+  console.log(shuffleArray);
+  shuffleArray.forEach((card) => {
+    cardContainer.append(card);
+  });
+};
+
+makeBoard(cardsOuter);
 
 const assignImg = () => {};
 
