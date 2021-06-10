@@ -13,25 +13,9 @@ let cardContainer = document.querySelector(".card-container");
 let cardsOuter = document.querySelectorAll(".card-outer");
 let cards = document.querySelectorAll(".card-inner");
 let backs = document.querySelectorAll(".back");
-
-// let images = [
-//   "6088f9a30da8f40018033e29.jpg",
-//   "cant.jpeg",
-//   "cat.jpg",
-//   "keanu.jpg",
-//   "leo.jpg",
-//   "mj.jpg",
-//   "pika.jpg",
-//   "yellow.png",
-//   "6088f9a30da8f40018033e29.jpg",
-//   "cant.jpeg",
-//   "cat.jpg",
-//   "keanu.jpg",
-//   "leo.jpg",
-//   "mj.jpg",
-//   "pika.jpg",
-//   "yellow.png",
-// ];
+let flipped = [];
+let scoreCount = 0;
+let score = document.querySelector(".score");
 
 let rNumber = 0;
 
@@ -79,7 +63,6 @@ const makeBoard = (nodeList) => {
     newArray.push(card);
   });
   let shuffleArray = shuffle(newArray);
-  console.log(shuffleArray);
   shuffleArray.forEach((card) => {
     cardContainer.append(card);
   });
@@ -90,8 +73,33 @@ makeBoard(cardsOuter);
 const assignImg = () => {};
 
 const cardFlip = (e) => {
-  console.log(e.target.parentNode);
-  e.target.parentNode.classList.toggle("flip-card");
+  console.dir(e.target);
+  if (flipped.length < 2 && e.target.classList.contains("front")) {
+    e.target.parentNode.classList.toggle("flip-card");
+    flipped.push(e.target);
+  }
+  if (flipped.length === 2) {
+    if (
+      flipped[0].getAttribute("data-key") ===
+      flipped[1].getAttribute("data-key")
+    ) {
+      scoreCount++;
+      score.innerText = `SCORE: ${scoreCount}`;
+      flipped = [];
+    } else {
+      flipped.forEach((item) => {
+        item.parentNode.classList.toggle("flip-card");
+      });
+      flipped = [];
+    }
+  }
 };
 
+console.log(flipped);
+
 cardContainer.addEventListener("click", cardFlip);
+
+// const matching=()=>{
+
+//     if(){}
+// }
