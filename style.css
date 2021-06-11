@@ -5,19 +5,25 @@ body {
   font-family: Impact, "Arial Narrow Bold", sans-serif;
   display: flex;
   flex-direction: column;
+  background-color: grey;
 }
 
 .header {
   text-align: center;
+  margin-top: 10px;
+  background-color: black;
+  margin-top: 0px;
+  color: orange;
 }
 
 .main {
   flex: 1;
-I I I I }
+}
 
 .images {
   width: 100%;
   height: 100%;
+  border-radius: 5px;
 }
 
 .card-container {
@@ -30,8 +36,7 @@ I I I I }
 
 .card-outer {
   box-sizing: border-box;
-
-  height: 21%;
+  height: 19%;
   width: 21%;
   perspective: 1000px;
   background-color: transparent;
@@ -46,7 +51,8 @@ I I I I }
   box-shadow: 0 4px 8px 0 rbga(0, 0, 0, 0.2);
 }
 .front {
-  background-color: royalblue;
+  background-image: linear-gradient(to bottom right, red, yellow);
+  box-shadow: 5px 5px 5px black;
 }
 
 .flip-card {
@@ -59,7 +65,6 @@ I I I I }
   height: 100%;
   width: 100%;
   backface-visibility: hidden;
-  /* border: 2px solid black; */
   border-radius: 5px;
 }
 
@@ -91,17 +96,6 @@ I I I I }
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
 }
-
-/* .modal2 {
-  display: flex;
-  position: fixed;
-  z-index: 99;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-} */
 
 .modal-contents {
   position: absolute;
@@ -150,3 +144,117 @@ I I I I }
 .hide {
   display: none;
 }
+
+/* @media only screen and (min-width: 768px) {
+  .main {
+    flex: 1;
+  }
+
+  .images {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-container {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .card-outer {
+    box-sizing: border-box;
+    height: 21%;
+    width: 21%;
+    perspective: 1000px;
+    background-color: transparent;
+  }
+
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    box-shadow: 0 4px 8px 0 rbga(0, 0, 0, 0.2);
+  }
+  .front {
+    background-color: royalblue;
+  }
+
+  .flip-card {
+    transform: rotateY(180deg);
+  }
+
+  .front,
+  .back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 5px;
+  }
+
+  .back {
+    transform: rotateY(180deg);
+  }
+
+  #board {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .reset {
+    background-color: black;
+    font-family: Impact, "Arial Narrow Bold", sans-serif;
+    color: white;
+    padding: 5px 10px;
+  }
+
+  .modal,
+  .modal2,
+  .modal3 {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .modal-contents {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal-image {
+    width: 500px;
+    height: 375px;
+  }
+
+  .start,
+  .restart,
+  .play-again {
+    background-color: white;
+    color: black;
+    letter-spacing: 1px;
+    font-size: larger;
+    border: none;
+    font-family: Impact, "Arial Narrow Bold", sans-serif;
+    padding: 8px;
+    width: 500px;
+  }
+
+  .hide {
+    display: none;
+  }
+} */

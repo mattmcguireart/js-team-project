@@ -1,7 +1,5 @@
 "use strict";
 
-// starat clock with time-up modal
-// reset
 // congratulations modal
 // media queary
 
@@ -10,7 +8,7 @@ let cardContainer = document.querySelector(".card-container");
 let cardsOuter = document.querySelectorAll(".card-outer");
 let cards = document.querySelectorAll(".card-inner");
 let backs = document.querySelectorAll(".back");
-let flipped = [];
+let matchedCards = [];
 let scoreCount = 0;
 let score = document.querySelector(".score");
 let start = document.querySelector(".start");
@@ -19,6 +17,9 @@ let modal2 = document.querySelector(".modal2");
 let restart = document.querySelector(".restart");
 let modal3 = document.querySelector(".modal3");
 let playAgain = document.querySelector(".play-again");
+let resetB = document.querySelector(".reset");
+let flippedCards = [];
+let myTimer;
 
 let rNumber = 0;
 
@@ -75,36 +76,42 @@ makeBoard(cardsOuter);
 
 const match = () => {
   if (
-    flipped[0].getAttribute("data-key") === flipped[1].getAttribute("data-key")
+    matchedCards[0].getAttribute("data-key") ===
+    matchedCards[1].getAttribute("data-key")
   ) {
     scoreCount++;
     score.innerText = `SCORE: ${scoreCount}`;
-    flipped = [];
+    matchedCards.forEach((card) => {
+      flippedCards.push(card);
+      card.parentNode.classList.add("hide");
+    });
+    console.log(flippedCards);
+
+    matchedCards = [];
   } else {
-    flipped.forEach((item) => {
+    matchedCards.forEach((item) => {
       item.parentNode.classList.toggle("flip-card");
     });
-    flipped = [];
+    matchedCards = [];
   }
 };
 
 const cardFlip = (e) => {
   console.dir(e.target);
-  if (flipped.length < 2 && e.target.classList.contains("front")) {
+  if (matchedCards.length < 2 && e.target.classList.contains("front")) {
     e.target.parentNode.classList.toggle("flip-card");
-    flipped.push(e.target);
-  }
-  if (flipped.length === 2) {
-    setTimeout(match, 1000);
+    matchedCards.push(e.target);
+    if (matchedCards.length === 2) {
+      setTimeout(match, 1000);
+    }
   }
 };
 
 cardContainer.addEventListener("click", cardFlip);
 
-let count = 5;
-
 const clock = () => {
-  let myTimer = setInterval(() => {
+  let count = 60;
+  myTimer = setInterval(() => {
     time.innerText = `TIME:${count}`;
     count--;
     if (count < 0) {
@@ -125,4 +132,16 @@ modal2.addEventListener("click", (e) => {
   }
 });
 
-// restart.addEventListener("click", clock);
+const reset = () => {
+  makeBoard(cardsOuter);
+  cards.forEach((card) => {
+    if (card.classList.contains("flip-card")) {
+      card.classList.remove("flip-card");
+      card.classList.remove("hide");
+    }
+  });
+  clearInterval(myTimer);
+  modal.classList.toggle("hide");
+};
+
+resetB.addEventListener("click", reset);
