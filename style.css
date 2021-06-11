@@ -24,6 +24,7 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 .card-container {
@@ -109,8 +110,8 @@ body {
 }
 
 .modal-image {
-  width: 500px;
-  height: 375px;
+  width: 100%;
+  height: 100%px;
 }
 
 .start,
@@ -123,7 +124,7 @@ body {
   border: none;
   font-family: Impact, "Arial Narrow Bold", sans-serif;
   padding: 8px;
-  width: 500px;
+  width: 100%;
 }
 
 .start:hover {
@@ -145,74 +146,31 @@ body {
   display: none;
 }
 
-/* @media only screen and (min-width: 768px) {
-  .main {
-    flex: 1;
+@media only screen and (min-width: 768px) {
+  body {
+    height: 100vh;
   }
-
-  .images {
-    width: 100%;
-    height: 100%;
-  }
-
-  .card-container {
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-
   .card-outer {
     box-sizing: border-box;
-    height: 21%;
+    height: 19%;
     width: 21%;
     perspective: 1000px;
     background-color: transparent;
   }
-
-  .card-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.6s;
-    box-shadow: 0 4px 8px 0 rbga(0, 0, 0, 0.2);
+  .card-container {
+    margin-top: 0%;
+    margin-bottom: 0%;
   }
-  .front {
-    background-color: royalblue;
-  }
-
-  .flip-card {
-    transform: rotateY(180deg);
-  }
-
-  .front,
-  .back {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    backface-visibility: hidden;
-    border-radius: 5px;
-  }
-
-  .back {
-    transform: rotateY(180deg);
-  }
-
   #board {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    font-size: 25px;
   }
-
   .reset {
-    background-color: black;
-    font-family: Impact, "Arial Narrow Bold", sans-serif;
-    color: white;
-    padding: 5px 10px;
+    font-size: 25px;
   }
-
+  .modal-image {
+    width: 500px;
+    height: 375px;
+  }
   .modal,
   .modal2,
   .modal3 {
@@ -224,23 +182,6 @@ body {
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
   }
-
-  .modal-contents {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .modal-image {
-    width: 500px;
-    height: 375px;
-  }
-
   .start,
   .restart,
   .play-again {
@@ -251,10 +192,6 @@ body {
     border: none;
     font-family: Impact, "Arial Narrow Bold", sans-serif;
     padding: 8px;
-    width: 500px;
+    width: 73%;
   }
-
-  .hide {
-    display: none;
-  }
-} */
+}

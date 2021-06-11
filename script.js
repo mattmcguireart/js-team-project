@@ -1,8 +1,5 @@
 "use strict";
 
-// congratulations modal
-// media queary
-
 let modal = document.querySelector(".modal");
 let cardContainer = document.querySelector(".card-container");
 let cardsOuter = document.querySelectorAll(".card-outer");
@@ -21,8 +18,6 @@ let resetB = document.querySelector(".reset");
 let flippedCards = [];
 let myTimer;
 
-let rNumber = 0;
-
 const toggleModal = () => {
   modal.classList.toggle("hide");
 };
@@ -35,11 +30,6 @@ modal.addEventListener("click", (e) => {
     modal.classList.toggle("hide");
   }
 });
-
-// const randomNumber = () => {
-//   rNumber = Math.floor(Math.random() * 16);
-//   return rNumber;
-// };
 
 const shuffle = (array) => {
   let currentIndex = array.length,
@@ -114,6 +104,12 @@ const clock = () => {
   myTimer = setInterval(() => {
     time.innerText = `TIME:${count}`;
     count--;
+    if (scoreCount === 8) {
+      modal3.classList.toggle("hide");
+      clearInterval(myTimer);
+      scoreCount = 0;
+      score.innerText = `SCORE: ${scoreCount}`;
+    }
     if (count < 0) {
       modal2.classList.toggle("hide");
       clearInterval(myTimer);
@@ -145,3 +141,10 @@ const reset = () => {
 };
 
 resetB.addEventListener("click", reset);
+
+modal2.addEventListener("click", reset);
+
+modal3.addEventListener("click", () => {
+  reset();
+  modal3.classList.toggle("hide");
+});
