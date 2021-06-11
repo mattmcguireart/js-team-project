@@ -1,12 +1,9 @@
 "use strict";
 
-// flip cards
-// match cards
-// update score
-// timer when start is clicked
-// losing modal
-// restart
+// starat clock with time-up modal
+// reset
 // congratulations modal
+// media queary
 
 let modal = document.querySelector(".modal");
 let cardContainer = document.querySelector(".card-container");
@@ -18,7 +15,10 @@ let scoreCount = 0;
 let score = document.querySelector(".score");
 let start = document.querySelector(".start");
 let time = document.querySelector(".time");
-let model2 = document.querySelector(".model2");
+let modal2 = document.querySelector(".modal2");
+let restart = document.querySelector(".restart");
+let modal3 = document.querySelector(".modal3");
+let playAgain = document.querySelector(".play-again");
 
 let rNumber = 0;
 
@@ -95,7 +95,7 @@ const cardFlip = (e) => {
     flipped.push(e.target);
   }
   if (flipped.length === 2) {
-    setTimeout(match, 2000);
+    setTimeout(match, 1000);
   }
 };
 
@@ -108,10 +108,21 @@ const clock = () => {
     time.innerText = `TIME:${count}`;
     count--;
     if (count < 0) {
-      model2.classList.toggle("hide");
+      modal2.classList.toggle("hide");
       clearInterval(myTimer);
     }
   }, 1000);
 };
 
 start.addEventListener("click", clock);
+
+modal2.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains("modal") ||
+    e.target.classList.contains("restart")
+  ) {
+    modal2.classList.toggle("hide");
+  }
+});
+
+// restart.addEventListener("click", clock);

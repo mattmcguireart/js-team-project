@@ -13,7 +13,7 @@ body {
 
 .main {
   flex: 1;
-}
+I I I I }
 
 .images {
   width: 100%;
@@ -59,13 +59,12 @@ body {
   height: 100%;
   width: 100%;
   backface-visibility: hidden;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   border-radius: 5px;
 }
 
 .back {
   transform: rotateY(180deg);
-  background-color: red;
 }
 
 #board {
@@ -74,7 +73,16 @@ body {
   align-items: center;
 }
 
-.modal {
+.reset {
+  background-color: black;
+  font-family: Impact, "Arial Narrow Bold", sans-serif;
+  color: white;
+  padding: 5px 10px;
+}
+
+.modal,
+.modal2,
+.modal3 {
   position: fixed;
   z-index: 99;
   width: 100%;
@@ -84,7 +92,7 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.modal2 {
+/* .modal2 {
   display: flex;
   position: fixed;
   z-index: 99;
@@ -93,7 +101,7 @@ body {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
-}
+} */
 
 .modal-contents {
   position: absolute;
@@ -111,7 +119,9 @@ body {
   height: 375px;
 }
 
-.start {
+.start,
+.restart,
+.play-again {
   background-color: white;
   color: black;
   letter-spacing: 1px;
@@ -123,6 +133,16 @@ body {
 }
 
 .start:hover {
+  color: white;
+  background-color: black;
+}
+
+.restart:hover {
+  color: white;
+  background-color: black;
+}
+
+.play-again:hover {
   color: white;
   background-color: black;
 }
