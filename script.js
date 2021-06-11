@@ -16,6 +16,9 @@ let backs = document.querySelectorAll(".back");
 let flipped = [];
 let scoreCount = 0;
 let score = document.querySelector(".score");
+let start = document.querySelector(".start");
+let time = document.querySelector(".time");
+let model2 = document.querySelector(".model2");
 
 let rNumber = 0;
 
@@ -32,10 +35,10 @@ modal.addEventListener("click", (e) => {
   }
 });
 
-const randomNumber = () => {
-  rNumber = Math.floor(Math.random() * 16);
-  return rNumber;
-};
+// const randomNumber = () => {
+//   rNumber = Math.floor(Math.random() * 16);
+//   return rNumber;
+// };
 
 const shuffle = (array) => {
   let currentIndex = array.length,
@@ -70,7 +73,20 @@ const makeBoard = (nodeList) => {
 
 makeBoard(cardsOuter);
 
-const assignImg = () => {};
+const match = () => {
+  if (
+    flipped[0].getAttribute("data-key") === flipped[1].getAttribute("data-key")
+  ) {
+    scoreCount++;
+    score.innerText = `SCORE: ${scoreCount}`;
+    flipped = [];
+  } else {
+    flipped.forEach((item) => {
+      item.parentNode.classList.toggle("flip-card");
+    });
+    flipped = [];
+  }
+};
 
 const cardFlip = (e) => {
   console.dir(e.target);
@@ -79,27 +95,23 @@ const cardFlip = (e) => {
     flipped.push(e.target);
   }
   if (flipped.length === 2) {
-    if (
-      flipped[0].getAttribute("data-key") ===
-      flipped[1].getAttribute("data-key")
-    ) {
-      scoreCount++;
-      score.innerText = `SCORE: ${scoreCount}`;
-      flipped = [];
-    } else {
-      flipped.forEach((item) => {
-        item.parentNode.classList.toggle("flip-card");
-      });
-      flipped = [];
-    }
+    setTimeout(match, 2000);
   }
 };
 
-console.log(flipped);
-
 cardContainer.addEventListener("click", cardFlip);
 
-// const matching=()=>{
+let count = 5;
 
-//     if(){}
-// }
+const clock = () => {
+  let myTimer = setInterval(() => {
+    time.innerText = `TIME:${count}`;
+    count--;
+    if (count < 0) {
+      model2.classList.toggle("hide");
+      clearInterval(myTimer);
+    }
+  }, 1000);
+};
+
+start.addEventListener("click", clock);
