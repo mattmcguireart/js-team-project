@@ -17,6 +17,7 @@ let playAgain = document.querySelector(".play-again");
 let resetB = document.querySelector(".reset");
 let flippedCards = [];
 let myTimer;
+let body = document.querySelector("body");
 
 const toggleModal = () => {
   modal.classList.toggle("hide");
@@ -75,7 +76,6 @@ const match = () => {
       flippedCards.push(card);
       card.parentNode.classList.add("hide");
     });
-    console.log(flippedCards);
 
     matchedCards = [];
   } else {
@@ -136,6 +136,8 @@ const reset = () => {
       card.classList.remove("hide");
     }
   });
+  scoreCount = 0;
+  score.innerText = `SCORE: ${scoreCount}`;
   clearInterval(myTimer);
   modal.classList.toggle("hide");
 };
